@@ -1,0 +1,13 @@
+.todo-list{
+  backgound-color:#eaeaea;
+}
+.todo-item{
+  padding:8px;
+  margin-top:10px;
+  border:1px solid #f33;
+  background-color:#f00;
+}
+.todo-item-title{}
+.todo-item-message{
+  font-size:16px;
+}
