@@ -11,8 +11,6 @@
                     }, {
                         "transform": "react-transform-catch-errors",
                         "imports": ["react", "redbox-react"]
-                    }, {
-                        "transform": "./src/my-custom-transform"
                     }]
                 }]
             ]
