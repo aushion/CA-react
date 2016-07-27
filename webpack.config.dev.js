@@ -28,7 +28,7 @@ module.exports = {
     },
     module: {
         loaders: [{
-            test: /\.js?$/,        //解析jsx,js等
+            test: /\.jsx?$/,        //解析jsx,js等
             exclude: [LIB_PATH],   //排除node_modules目录，加快打包速度
             include: [SRC_PATH],
             loader: 'babel'
