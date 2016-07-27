@@ -1,8 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 var TPL_PATH = path.resolve(__dirname, 'src/template');//html模板路径
 var LIB_PATH = path.resolve(__dirname, 'node_modules');//项目依赖模块路径
@@ -28,7 +27,7 @@ module.exports = {
     },
     module: {
         loaders: [{
-            test: /\.js?$/,        //解析jsx,js等
+            test: /\.jsx?$/,        //解析jsx,js等
             exclude: [LIB_PATH],   //排除node_modules目录，加快打包速度
             include: [SRC_PATH],
             loader: 'babel'
@@ -36,7 +35,7 @@ module.exports = {
             test: /\.css$/,
             exclude: [LIB_PATH],
             include: [SRC_PATH],
-            loader: "style-loader!css-loader"
+            loaders:['style-loader','css-loader','postcss-loader']
         }, {
             test: /\.scss$/,
             exclude: [LIB_PATH],
@@ -57,8 +56,6 @@ module.exports = {
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        // new webpack.optimize.CommonsChunkPlugin('js/common.js', ['index','hello']),
-        // new ExtractTextPlugin("css/[name].css"), //单独使用style标签加载css并设置其路径
         new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
             filename: 'home.html', //生成的html存放路径，相对于 path
             template: TPL_PATH + '/index.html', //html模板路径
@@ -80,17 +77,6 @@ module.exports = {
                 removeComments: true, //移除HTML中的注释
                 collapseWhitespace: false //删除空白符与换行符
             }
-        }),
-        // new CopyWebpackPlugin([{//拷贝静态资源从开发目录到打包目录
-        //     from: path.resolve(SRC_PATH, 'common'),
-        //     to: "common",
-        //     toType: 'dir'
-        // }]),
-        // //provide $, jQuery and window.jQuery to every script
-        // new webpack.ProvidePlugin({
-        //     $: "jquery",
-        //     jQuery: "jquery",
-        //     "window.jQuery": "jquery"
-        // })
-    ],
+        })
+    ]
 };
