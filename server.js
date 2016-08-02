@@ -1,19 +1,19 @@
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
-var config = require('./webpack.config.dev');
+var config = require('./webpack.config.dev.js');
 var compiler = webpack(config);
 var webpackDevMiddleware = require('webpack-dev-middleware'); //建立一个本地服务器
 var webpackHotMiddleware = require('webpack-hot-middleware'); //代码及时更新
 //在webpack入口添加hot-middleware
 var entry = config.entry;
+
 for (var i in entry) {
     if (i == 'vendors') {
         continue;
     };
     entry[i].unshift("webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true");
 };
-
 var app = express(); //初始化一个web服务
 app.use(webpackDevMiddleware(compiler, {
     // noInfo: true,
