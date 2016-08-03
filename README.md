@@ -17,7 +17,7 @@
 
 ### 2.用法
 1. npm install 安装依赖包   
-2. npm start 启动开发环境项目   浏览器打开[http://locahost:3000/home.html](http://locahost:3000/home.html)
+2. npm start 启动开发环境项目   浏览器打开[http://localhost:3000/home.html](http://localhost:3000/home.html)
 3. npm run build 生产环境打包（生成build文件夹）
 
 ### 3.组件  
